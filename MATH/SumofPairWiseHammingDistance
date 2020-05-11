@@ -1,0 +1,37 @@
+int Solution::hammingDistance(const vector<int> &A) {
+    
+   // approach 1
+    //upper traingular
+    
+  /*  for(int i=0;i<A.size();i++){
+        for(int j=i;j<A.size();j++){
+            sum+= HD(A[i],A[j]);
+        }
+    }
+    return 2*sum*/
+    
+    const int mod=1000000007;
+    
+    vector<int> binary_array(32,0);
+    
+    for(int i=0;i<A.size();i++)
+    {
+        //pick out a number and i can store its bits position
+        
+        int num =A[i];
+        int index=0;
+        while(num>0)
+        {
+            binary_array[index] +=(num & 1);
+            index++;
+            num = num>>1; //num/2;
+        
+        }
+    }
+    int result = 0;
+    for(int i=0; i<binary_array.size();i++)
+    {
+    result = (result + 2*binary_array[i]*(A.size()-binary_array[i]))% mod;
+    }
+    return result;
+}
