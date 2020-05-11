@@ -1,0 +1,21 @@
+int Solution::trailingZeroes(int A) {
+    
+    int sum = 0;
+    // keep dividing number until it becomes zero 
+    // store divided result in a variable and keep updating and adding
+    //final addition gives number of zero
+    // example: 100 ! 
+    /*
+    100/5 =20
+    20/5 =4
+    4/5 =0
+    (20+4+0)
+    =24*/
+    
+    while(A)
+    {
+        sum = sum + (A/5);
+        A=A/5;
+    }
+    return sum;
+}
