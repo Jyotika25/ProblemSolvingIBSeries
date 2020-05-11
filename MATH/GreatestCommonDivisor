@@ -1,0 +1,12 @@
+int Solution::gcd(int A, int B) {
+  
+  /*
+  this is standard template library inbuilt function
+  return __gcd(A,B);*/
+  
+  //recursive approach
+  
+  if(B==0) return A;
+  
+ return gcd(B, A%B);
+}
