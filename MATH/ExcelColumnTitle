@@ -1,0 +1,13 @@
+string Solution::convertToTitle(int A) {
+    
+    string result;
+    string map ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    while(A>0)
+    {
+        A=A-1;
+        int remain = A%26;
+        result = map[remain] + result;
+        A=A/26;
+    }
+    return result;
+}
