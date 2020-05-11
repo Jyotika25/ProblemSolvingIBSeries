@@ -1,0 +1,21 @@
+int Solution::isPalindrome(int A) {
+    
+    // two pointers efficient approach
+    
+    if(A<0)
+    return false;
+    
+    string num  = to_string(A);
+    int start =0;
+    int end = num.size()-1;
+    
+     while(start<end)
+     {
+         if(num[start]!=num[end]){
+             return false;
+         }
+         start++;
+         end--;
+     }
+     return true;
+}
