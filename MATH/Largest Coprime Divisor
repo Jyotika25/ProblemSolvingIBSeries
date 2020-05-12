@@ -1,0 +1,19 @@
+int Solution::cpFact(int A, int B) {
+    
+    int gcd_value = __gcd(A,B);
+    
+    //BEST CASE
+    
+    if(gcd_value == 1)
+    return A;
+    
+    else
+    {
+        while(gcd_value !=1){
+            A= A/gcd_value;
+            gcd_value = __gcd(A,B);
+            
+        }
+        return A;
+    }
+}
