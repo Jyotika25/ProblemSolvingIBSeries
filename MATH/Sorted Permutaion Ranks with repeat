@@ -1,0 +1,76 @@
+#define mod 1000003
+
+long long int power(long long int A, long long int B)
+{
+     // BASE CASE
+    if(A==0)
+    return 0;
+    if(B==0)
+    return 1;
+    
+    long result;
+    
+    if(B % 2 == 0)
+    {
+        result = power(A,B/2);
+        result = (result * result) % mod;
+        
+    }
+    else
+    {
+        result =A % mod;
+        result = (result * power(A,B-1) % mod) % mod;
+    }
+    
+    return result % mod;
+}
+
+int Solution::findRank(string A){
+    
+    int n = A.size();
+    
+    long long int fact[n];
+    fact[0] =1;
+    //calculate factorial in an array efficiently
+    for(int i=1;i<n;i++)
+    {
+        fact[i] = ((fact[i-1] % mod) * (i % mod)) % mod;
+    }
+    
+    int ans =0;
+    
+    //main logic
+    
+    for(int i=0;i<A.size();i++)
+    {
+        int count =0;
+        
+        for(int j=i+1;j<A.size();j++)
+        {
+            if(A[j]<A[i])
+            {
+            count++;
+            }
+        }
+        
+        // store characters and their counts in a map
+        
+        map<char,int> M;
+        
+        for(int k=i; k<A.size();k++)
+        {
+            M[A[k]]++;
+        }
+        
+        long long int d =1;
+        
+        for(auto a: M)
+        {
+         d = ((d %mod) * (fact[a.second] % mod)) % mod  ; 
+        }
+        
+        ans = (ans + count *(fact[A.size()-i-1] % mod * power(d,mod-2) % mod) % mod)%mod;
+    }
+    
+    return (ans + 1) % mod;
+}
