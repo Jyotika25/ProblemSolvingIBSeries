@@ -1,0 +1,17 @@
+int Solution::singleNumber(const vector<int> &A) {
+    int ones = 0, twos = 0 ;
+    int n  = A.size();
+    int commonbitmask;
+    
+    for(int i=0;i<n;i++)
+    {
+        
+        //one & arr give common bits
+        twos = twos| (ones & A[i]);
+        ones = ones ^ A[i];
+        commonbitmask = ~(ones & twos);
+        ones = ones & commonbitmask;
+        twos = twos & commonbitmask;
+    }
+    return ones;
+}
